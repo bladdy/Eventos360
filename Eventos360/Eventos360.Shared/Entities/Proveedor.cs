@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Eventos360.Shared.Entities
+{
+    public class Proveedor
+    {
+        public Guid Id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public decimal? PrecioMinimo { get; set; }
+        public decimal? PrecioMaximo { get; set; }
+        public string Ciudad { get; set; }
+        public string Estado { get; set; }
+        public string Direccion { get; set; }
+        public string Telefono { get; set; }
+        public string WhatsApp { get; set; }
+        public string SitioWeb { get; set; }
+        public string ImagenUrl { get; set; }
+        public Categoria Categoria { get; set; }
+        public Guid CategoriaId { get; set; }
+        public List<ImagenProveedor> Galeria { get; set; }
+        public List<Resena> Reseñas { get; set; }
+        public DateTime FechaCreacion { get; set; }
+    }
+
+}
