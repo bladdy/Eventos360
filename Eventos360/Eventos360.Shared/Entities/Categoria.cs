@@ -11,6 +11,7 @@ namespace Eventos360.Shared.Entities
         public Guid Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public string ImagenUrl { get; set; }
         public ICollection<Proveedor> Proveedores { get; set; }
     }
 }
