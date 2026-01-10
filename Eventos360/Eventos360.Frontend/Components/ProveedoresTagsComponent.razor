@@ -1,0 +1,36 @@
+﻿@using Eventos360.Shared.DTOs
+@inherits LayoutComponentBase
+
+<section style="width:100%; padding:40px 0;">
+
+    <!-- Título -->
+    <h2 class="fw-bold fs-3 mb-1 text-dark mb-4">
+        Todos los proveedores para tu evento
+    </h2>
+
+    <!-- Subtítulo -->
+    <h3 class="fs-6">
+        <a href="/proveedores"
+           class="text-decoration-none text-secondary fw-semibold">
+            Proveedores
+        </a>
+    </h3>
+
+    <!-- Tags -->
+    <ul class="list-unstyled d-flex flex-wrap align-items-center mb-0">
+
+        @foreach (var tag in Tags)
+        {
+            <li class="d-flex align-items-center px-5 me-3 border-end">
+
+                <a href="@($"/proveedores/tag/{tag.Id}")"
+                   class="text-decoration-none text-secondary medium">
+                    @tag.Nombre
+                </a>
+
+            </li>
+        }
+
+    </ul>
+
+</section>

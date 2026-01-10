@@ -13,11 +13,11 @@ namespace Eventos360.Frontend.Components
         private const int MaxVisible = 6;
 
         private double touchStartX;
-        private int StartIndex = 0;
         private ElementReference CarouselRef;
 
         private DotNetObjectReference<CategoryComponent>? ObjRef;
 
+        private int StartIndex = 0;
         private int VisibleCount = 1;
 
         private const int CardWidth = 260;
@@ -34,7 +34,7 @@ namespace Eventos360.Frontend.Components
                 Id = Guid.NewGuid(),
                 Nombre = "Fotografía y Video",
                 Descripcion = "Fotógrafos y videógrafos profesionales para capturar los mejores momentos de tu evento.",
-                ImagenUrl = "/images/categorias/fotografia-video.jpg",
+                ImagenUrl = "/imagenes/categorias/fotografia.jpg",
                 CantidadProveedores = 0
             },
             new CategoriaDTO
@@ -150,6 +150,7 @@ namespace Eventos360.Frontend.Components
                 CantidadProveedores = 0
             }
         };
+
         protected override Task OnInitializedAsync()
         {
             // Valor inicial seguro antes de JS

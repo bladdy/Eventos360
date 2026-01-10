@@ -1,9 +1,9 @@
 ﻿@using Eventos360.Shared.DTOs
 @inherits LayoutComponentBase
 
-<div style="width:100%; padding:50px 0;">
+<div style="width:100%; padding:40px 0; box-sizing:border-box; overflow:hidden;">
 
-    <!-- Card de Categoría -->
+    <!-- Header -->
     <div style="
         width:100%;
         height:260px;
@@ -15,108 +15,101 @@
         overflow:hidden;
         margin-bottom:40px;
     ">
+        <div style="position:absolute; inset:0;
+            background:linear-gradient(to right,
+            rgba(0,0,0,0.75), rgba(0,0,0,0.3));">
+        </div>
 
-        <!-- Overlay -->
-        <div style="
-            position:absolute;
-            inset:0;
-            background:linear-gradient(
-                to right,
-                rgba(0,0,0,0.75),
-                rgba(0,0,0,0.3)
-            );
-        "></div>
-
-        <!-- Contenido -->
-        <div style="
-            position:absolute;
-            bottom:30px;
-            left:30px;
-            color:white;
-            z-index:2;
-            max-width:600px;
-        ">
-            <h1 style="font-size:34px; font-weight:800; margin:0;">
+        <div style="position:absolute; bottom:30px; left:30px; color:white;">
+            <h1 style="margin:0; font-size:34px; font-weight:800;">
                 @CategoriaNombre
             </h1>
-            <p style="margin-top:10px; font-size:16px; line-height:1.5;">
+            <p style="margin-top:10px; max-width:600px;">
                 @CategoriaDescripcion
             </p>
         </div>
     </div>
 
     <!-- Carrusel -->
-    <div style="display:flex; align-items:center; gap:20px;">
+    <div style="
+        display:flex;
+        align-items:center;
+        gap:20px;
+        width:100%;
+        max-width:100%;
+        box-sizing:border-box;
+    ">
 
         <!-- Prev -->
         <button @onclick="Prev"
                 style="width:45px;height:45px;border-radius:50%;
-                       border:none;background:#f2f2f2;
-                       font-size:20px;cursor:pointer;">
+                       border:none;background:#f2f2f2;font-size:20px; flex-shrink:0;">
             ‹
         </button>
 
-        <!-- Proveedores -->
-        <div style="
-            display:flex;
-            gap:20px;
-            flex:1;
-            overflow:hidden;
-        "
-             @ontouchstart="OnTouchStart"
-             @ontouchend="OnTouchEnd">
+        <!-- VIEWPORT REAL -->
+        <div @ref="CarouselProveeRef"
+             style="
+                position:relative;
+                overflow:hidden;
+                flex:1;
+                max-width:100%;
+                box-sizing:border-box;
+                touch-action:pan-y;
+             ">
 
-            @foreach (var proveedor in VisibleProveedores)
-            {
-                <div style="
-                    min-width:240px;
-                    height:260px;
-                    border-radius:18px;
-                    background-image:url('@proveedor.ImagenUrl');
-                    background-size:cover;
-                    background-position:center;
-                    position:relative;
-                    color:white;
-                    overflow:hidden;
-                    ">
+            <!-- TRACK (NO AFECTA LAYOUT) -->
+            <div style="
+                display:flex;
+                gap:@($"{Gap}px");
+                transform:translateX(@TranslateX);
+                transition:transform 0.4s ease;
+                will-change:transform;
+            "
+                 @ontouchstart="OnTouchStart"
+                 @ontouchend="OnTouchEnd">
 
+                @foreach (var proveedor in VisiblesProveedores)
+                {
                     <div style="
-                        position:absolute;
-                        inset:0;
-                        background:linear-gradient(
-                            to top,
-                            rgba(0,0,0,0.75),
-                            rgba(0,0,0,0.2)
-                        );
-                        "></div>
-
-                    <div style="
-                        position:absolute;
-                        bottom:20px;
-                        left:20px;
-                        z-index:2;
+                        min-width:@($"{CardWidth}px");
+                        height:260px;
+                        border-radius:18px;
+                        overflow:hidden;
+                        background-image:url('@proveedor.ImagenUrl');
+                        background-size:cover;
+                        background-position:center;
+                        position:relative;
+                        color:white;
+                        flex-shrink:0;
+                        box-sizing:border-box;
                         ">
-                        <h3 style="margin:0; font-size:18px; font-weight:700;">
-                            @proveedor.Nombre
-                        </h3>
-                        <p style="margin:4px 0 0; font-size:13px;">
-                            @proveedor.Ciudad
-                        </p>
+
+                        <div style="position:absolute; inset:0;
+                            background:linear-gradient(to top,
+                            rgba(0,0,0,0.75), rgba(0,0,0,0.2));">
+                        </div>
+
+                        <div style="position:absolute; bottom:20px; left:20px;">
+                            <h3 style="margin:0; font-size:18px; font-weight:700;">
+                                @proveedor.Nombre
+                            </h3>
+                            <p style="margin:4px 0 0; font-size:13px;">
+                                @proveedor.Ciudad
+                            </p>
+                        </div>
+
                     </div>
-
-                </div>
-            }
-
+                }
+            </div>
         </div>
 
         <!-- Next -->
         <button @onclick="Next"
                 style="width:45px;height:45px;border-radius:50%;
-                       border:none;background:#f2f2f2;
-                       font-size:20px;cursor:pointer;">
+                       border:none;background:#f2f2f2;font-size:20px; flex-shrink:0;">
             ›
         </button>
 
     </div>
-
 </div>
