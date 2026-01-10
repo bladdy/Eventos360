@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Eventos360.Shared.Entities
+﻿namespace Eventos360.Shared.Entities
 {
     public class Usuario
     {
@@ -15,5 +9,4 @@ namespace Eventos360.Shared.Entities
         public string Role { get; set; } // Admin, Cliente, Proveedor
         public DateTime FechaRegistro { get; set; }
     }
-
 }

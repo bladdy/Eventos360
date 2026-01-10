@@ -1,0 +1,154 @@
+﻿@inherits LayoutComponentBase
+
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+    <div class="container-fluid px-4 d-flex align-items-center">
+
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center"
+           href="/"
+           style="margin-right:130px;">
+            <img src="logo.png" alt="Eventos 360" height="40">
+        </a>
+
+        <!-- Buscador -->
+        <div class="d-none d-lg-flex flex-grow-1"
+             style="margin-right:130px;">
+            <div class="input-group rounded-pill overflow-hidden"
+                 style="box-shadow:none; background:#f3f3f3;">
+
+                <span class="input-group-text bg-transparent border-0">
+                    <i class="bi bi-search text-muted"></i>
+                </span>
+
+                <input class="form-control border-0 bg-transparent"
+                       placeholder="¿Qué estás buscando?"
+                       style="box-shadow:none;" />
+
+                <span class="input-group-text bg-transparent border-0">
+                    <i class="bi bi-geo-alt text-muted"></i>
+                </span>
+
+                <input class="form-control border-0 bg-transparent"
+                       placeholder="Ubicación"
+                       style="box-shadow:none;" />
+
+                <button class="btn rounded-pill px-4"
+                        style="background:#ff1f3d;color:white;border:none;">
+                    Búsqueda
+                </button>
+            </div>
+        </div>
+
+        <!-- Acciones derecha -->
+        <div class="d-flex align-items-center" style="gap:18px;">
+
+            <!-- Carrito -->
+            <a href="#" class="position-relative text-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-cart"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
+                </span>
+            </a>
+
+            <!-- Login -->
+            <a href="/login"
+               class="btn btn-outline-secondary rounded-pill px-3"
+               style="white-space:nowrap;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-door-enter"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M13 12v.01" /><path d="M3 21h18" /><path d="M5 21v-16a2 2 0 0 1 2 -2h6m4 10.5v7.5" /><path d="M21 7h-7m3 -3l-3 3l3 3" /></svg>
+                Inicia Sesión
+            </a>
+
+            <!-- Botón menú -->
+            <a class="rounded-circle d-flex align-items-center justify-content-center bg-light text-black"
+                    style="width:40px;height:40px;"
+                    @onclick="ToggleSidebar">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="24" height="24"
+                     viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 6h10" />
+                    <path d="M4 12h16" />
+                    <path d="M7 12h13" />
+                    <path d="M7 18h10" />
+                </svg>
+            </a>
+
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- SIDEBAR -->
+<div class="offcanvas offcanvas-end @(IsSidebarOpen ? "show" : "")"
+     tabindex="-1"
+     style="visibility:@(IsSidebarOpen ? "visible" : "hidden");">
+
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title">Menú</h5>
+        <button type="button"
+                class="btn-close"
+                @onclick="ToggleSidebar"></button>
+    </div>
+
+    <div class="offcanvas-body">
+
+        <ul class="nav flex-column gap-2">
+
+            <li class="nav-item">
+                <NavLink class="nav-link text-dark" href="/">
+                    Inicio
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link text-dark" href="/proveedores">
+                    Proveedores
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link text-dark" href="/categorias">
+                    Categorías
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link text-dark" href="/ofertas">
+                    Ofertas
+                </NavLink>
+            </li>
+
+            <li class="nav-item">
+                <NavLink class="nav-link text-dark" href="/contacto">
+                    Contacto
+                </NavLink>
+            </li>
+
+        </ul>
+
+    </div>
+</div>
+
+<!-- BACKDROP -->
+@if (IsSidebarOpen)
+{
+    <div class="offcanvas-backdrop fade show"
+         @onclick="ToggleSidebar"></div>
+}
+
+@Body
+
+@code {
+    private bool IsSidebarOpen = false;
+
+    void ToggleSidebar()
+    {
+        IsSidebarOpen = !IsSidebarOpen;
+    }
+}

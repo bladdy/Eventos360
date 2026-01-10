@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Eventos360.Shared.Entities
+namespace Eventos360.Shared.DTOs
 {
-    public class Ciudad
+    public class CategoriaDTO
     {
         public Guid Id { get; set; }
         public string Nombre { get; set; }
-        public string Estado { get; set; }
-        public ICollection<Proveedor> Proveedores { get; set; }
+        public string Descripcion { get; set; }
+        public int CantidadProveedores { get; set; }
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Eventos360.Shared.Entities
 {
-    public class Ciudad
+    public class TagsProvedor
     {
         public Guid Id { get; set; }
-        public string Nombre { get; set; }
-        public string Estado { get; set; }
-        public ICollection<Proveedor> Proveedores { get; set; }
+        public Guid ProveedorId { get; set; }
+        public Proveedor Proveedor { get; set; }
+        public Guid TagId { get; set; }
+        public Tags Tag { get; set; }
     }
 }

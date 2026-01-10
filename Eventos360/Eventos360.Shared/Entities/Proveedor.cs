@@ -11,6 +11,7 @@ namespace Eventos360.Shared.Entities
         public Guid Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public string Stand { get; set; }
         public decimal? PrecioMinimo { get; set; }
         public decimal? PrecioMaximo { get; set; }
         public string Ciudad { get; set; }
@@ -20,11 +21,11 @@ namespace Eventos360.Shared.Entities
         public string WhatsApp { get; set; }
         public string SitioWeb { get; set; }
         public string ImagenUrl { get; set; }
+        public ICollection<TagsProvedor> TagsProvedors { get; set; }
         public Categoria Categoria { get; set; }
         public Guid CategoriaId { get; set; }
-        public List<ImagenProveedor> Galeria { get; set; }
-        public List<Resena> Reseñas { get; set; }
+        public ICollection<ImagenProveedor> Galeria { get; set; }
+        public ICollection<Resena> Reseñas { get; set; }
         public DateTime FechaCreacion { get; set; }
     }
-
 }
