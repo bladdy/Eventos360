@@ -102,31 +102,31 @@
         <ul class="nav flex-column gap-2">
 
             <li class="nav-item">
-                <NavLink class="nav-link text-dark" href="/">
+                <NavLink class="nav-link text-dark" href="/" @onclick="ToggleSidebar">
                     Inicio
                 </NavLink>
             </li>
 
             <li class="nav-item">
-                <NavLink class="nav-link text-dark" href="/proveedores">
-                    Proveedores
+                <NavLink class="nav-link text-dark" href="/search" @onclick="ToggleSidebar">
+                    Busqueda
                 </NavLink>
             </li>
 
             <li class="nav-item">
-                <NavLink class="nav-link text-dark" href="/categorias">
+                <NavLink class="nav-link text-dark" href="/categorias" @onclick="ToggleSidebar">
                     Categorías
                 </NavLink>
             </li>
 
             <li class="nav-item">
-                <NavLink class="nav-link text-dark" href="/ofertas">
+                <NavLink class="nav-link text-dark" href="/ofertas" @onclick="ToggleSidebar">
                     Ofertas
                 </NavLink>
             </li>
 
             <li class="nav-item">
-                <NavLink class="nav-link text-dark" href="/contacto">
+                <NavLink class="nav-link text-dark" href="/contacto" @onclick="ToggleSidebar">
                     Contacto
                 </NavLink>
             </li>
