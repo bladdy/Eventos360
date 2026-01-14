@@ -23,8 +23,9 @@
         {
             <li class="d-flex align-items-center px-5 me-3 border-end">
 
-                <a href="@($"/proveedores/tag/{tag.Id}")"
-                   class="text-decoration-none text-secondary medium">
+                <a href="javascript:void(0)"
+                   class="text-decoration-none text-secondary medium me-2"
+                   @onclick="() => NavigateWithTag(tag.Nombre)">
                     @tag.Nombre
                 </a>
 

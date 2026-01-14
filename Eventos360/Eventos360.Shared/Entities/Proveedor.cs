@@ -8,7 +8,9 @@ namespace Eventos360.Shared.Entities
 {
     public class Proveedor
     {
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
+        public int Id { get; set; }
+
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Stand { get; set; }
@@ -27,7 +29,10 @@ namespace Eventos360.Shared.Entities
         public bool Activo { get; set; }
         public ICollection<TagsProvedor> TagsProvedors { get; set; }
         public Categoria Categoria { get; set; }
-        public Guid CategoriaId { get; set; }
+
+        //public Guid CategoriaId { get; set; }
+        public int CategoriaId { get; set; }
+
         public ICollection<ImagenProveedor> Galeria { get; set; }
         public ICollection<Resena> Reseñas { get; set; }
         public DateTime FechaCreacion { get; set; }

@@ -8,10 +8,16 @@ namespace Eventos360.Shared.Entities
 {
     public class TagsProvedor
     {
-        public Guid Id { get; set; }
-        public Guid ProveedorId { get; set; }
+        public int Id { get; set; }
+        //public Guid Id { get; set; }
+
+        //public Guid ProveedorId { get; set; }
+        public int ProveedorId { get; set; }
+
         public Proveedor Proveedor { get; set; }
-        public Guid TagId { get; set; }
+        public int TagId { get; set; }
+
+        //public Guid TagId { get; set; }
         public Tags Tag { get; set; }
     }
 }

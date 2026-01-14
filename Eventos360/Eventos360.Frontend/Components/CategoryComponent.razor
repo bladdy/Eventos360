@@ -33,7 +33,8 @@
 
                 @foreach (var categoria in VisibleCategories)
                 {
-                    <div style="
+                    <div @onclick="() => IrABusqueda(categoria)"
+                         style="
                         min-width:@($"{CardWidth}px");
                         height:260px;
                         border-radius:18px;
@@ -44,6 +45,7 @@
                         color:white;
                         flex-shrink:0;
                         overflow:hidden;
+                        cursor:pointer;
                         ">
 
                         <div style="
@@ -65,7 +67,7 @@
                                 @categoria.Nombre
                             </h2>
                             <p style="margin:4px 0 0;font-size:14px;">
-                                @categoria.CantidadProveedores Proveedores
+                                @categoria.Proveedores.Count Proveedores
                             </p>
                         </div>
                     </div>

@@ -15,9 +15,10 @@
                         <label class="form-label fw-semibold">Categoría</label>
                         <select class="form-select">
                             <option value="">Todas</option>
-                            <option>Fotógrafos</option>
-                            <option>DJ</option>
-                            <option>Buffet</option>
+                            @foreach (var categoria in Categorias)
+                            {
+                                <option value="@categoria.Id">@categoria.Nombre</option>
+                            }
                         </select>
                     </div>
 
@@ -26,8 +27,10 @@
                         <label class="form-label fw-semibold">Sector</label>
                         <select class="form-select">
                             <option value="">Todos</option>
-                            <option>Salones</option>
-                            <option>Exteriores</option>
+                            @foreach (var categoria in Categorias)
+                            {
+                                <option value="@categoria.Id">@categoria.Nombre</option>
+                            }
                         </select>
                     </div>
 
@@ -45,10 +48,18 @@
                     <!-- Tags -->
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Servicios</label>
+
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="badge bg-light text-dark border">Bodas</span>
-                            <span class="badge bg-light text-dark border">XV Años</span>
-                            <span class="badge bg-light text-dark border">Corporativo</span>
+                            @foreach (var tag in Tags)
+                            {
+                                var isSelected = SelectedTags.Contains(tag.Nombre);
+
+                                <span @onclick="() => ToggleFiltroTag(tag.Nombre)"
+                                      class="badge @(isSelected ? "bg-primary text-white" : "bg-light text-dark border")"
+                                      style="cursor:pointer;">
+                                    @tag.Nombre
+                                </span>
+                            }
                         </div>
                     </div>
 
@@ -79,26 +90,26 @@
             <!-- LISTADO -->
             <div class="row g-4">
 
-                @for (int i = 0; i < 6; i++)
+                @foreach (var proveedor in Proveedors)
                 {
                     <div class="col-12 col-md-6 col-xl-4">
                         <div class="card h-100 shadow-sm">
-                            <img src="/imagenes/categorias/fotografia.jpg"
+                            <img src="@proveedor.ImagenUrl"
                                  class="card-img-top"
                                  alt="Proveedor">
 
                             <div class="card-body">
                                 <h5 class="card-title fw-bold">
-                                    Nombre del proveedor
+                                    @proveedor.Nombre
                                 </h5>
 
                                 <p class="card-text text-muted small mb-2">
-                                    Fotografía profesional para eventos
+                                    @proveedor.Descripcion
                                 </p>
 
                                 <div class="d-flex justify-content-between align-items-center">
                                     <span class="badge bg-success">
-                                        ★ 4.8
+                                        ★ @proveedor.Reseñas.Average(c => c.Calificacion).ToString("0.0")
                                     </span>
 
                                     <a href="#" class="btn btn-outline-primary btn-sm">

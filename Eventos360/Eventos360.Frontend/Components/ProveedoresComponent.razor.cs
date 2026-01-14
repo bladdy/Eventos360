@@ -1,4 +1,5 @@
 using Eventos360.Shared.DTOs;
+using Eventos360.Shared.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
@@ -9,12 +10,13 @@ namespace Eventos360.Frontend.Components
     {
         [Inject] private IJSRuntime JS { get; set; } = default!;
 
+        [Inject] private NavigationManager NavigationManager { get; set; } = default!;
         [Parameter] public string CategoriaNombre { get; set; } = string.Empty;
         [Parameter] public string CategoriaDescripcion { get; set; } = string.Empty;
         [Parameter] public string CategoriaImagenUrl { get; set; } = string.Empty;
-        [Parameter] public List<ProveedorDTO> Proveedores { get; set; } = new();
+        [Parameter] public List<Proveedor> Proveedores { get; set; } = new();
 
-        public List<ProveedorDTO> VisiblesProveedores { get; set; } = new();
+        public List<Proveedor> VisiblesProveedores { get; set; } = new();
         private double touchStartX;
         private int StartIndex = 0;
         private int VisibleCount = 1;
@@ -55,6 +57,12 @@ namespace Eventos360.Frontend.Components
             StateHasChanged();
         }
 
+        private void IrAProveedor(string stand)
+        {
+            var url = $"/provider/{stand}";
+            NavigationManager.NavigateTo(url);
+        }
+
         private void Next()
         {
             if (Proveedores.Count <= 0) return;
@@ -68,9 +76,8 @@ namespace Eventos360.Frontend.Components
         {
             if (Proveedores.Count <= 0) return;
 
-            StartIndex =
-        (StartIndex - 1 + Proveedores.Count)
-        % Proveedores.Count;
+            StartIndex = (StartIndex - 1 + Proveedores.Count)
+                % Proveedores.Count;
 
             UpdateVisible();
         }
@@ -85,9 +92,15 @@ namespace Eventos360.Frontend.Components
 
             if (Proveedores.Count == 0) return;
 
-            for (int i = 0; i < VisibleCount; i++)
+            int totalVisibles = Math.Min(VisibleCount, Proveedores.Count);
+
+            for (int i = 0; i < totalVisibles; i++)
             {
-                int index = (StartIndex + i) % Proveedores.Count;
+                int index = StartIndex + i;
+
+                if (index >= Proveedores.Count)
+                    break;
+
                 VisiblesProveedores.Add(Proveedores[index]);
             }
         }
@@ -97,6 +110,7 @@ namespace Eventos360.Frontend.Components
             ObjRef?.Dispose();
             return ValueTask.CompletedTask;
         }
+
         private void OnTouchStart(TouchEventArgs e)
         {
             touchStartX = e.Touches[0].ClientX;

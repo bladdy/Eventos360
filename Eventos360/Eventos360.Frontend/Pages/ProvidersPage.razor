@@ -1,4 +1,4 @@
-﻿@page "/provider"
+﻿@page "/provider/{Stand}"
 @inherits LayoutComponentBase
 
 <div class="container my-3">
@@ -6,7 +6,7 @@
     <!-- HERO / STAND -->
     <div class="row">
         <div class="col-12 position-relative">
-            <img src="@selectedProveedor.ImagenBannerUrl"
+            <img src="@selectedProveedor!.ImagenBannerUrl"
                  class="img-fluid w-100 rounded-4 shadow rounded-3"
                  style="max-height:420px; object-fit:cover"
                  alt="@selectedProveedor.Nombre" />
@@ -62,7 +62,8 @@
 
                         <li class="list-group-item">
                             <strong>Servicios:</strong><br />
-                            @string.Join(", ", selectedProveedor.TagsProvedors.Select(t => t.Tag.Nombre))
+                            @string.Join(", ", selectedProveedor.TagsProvedors?.Select(t => t.Tag.Nombre) ?? [])
+
                         </li>
 
                     </ul>
@@ -171,7 +172,8 @@
     </div>
 
     <!-- PRODUCTOS DESTACADOS -->
-    @if (selectedProveedor.Productos.Any(p => p.Destacado))
+    @if (selectedProveedor.Productos?.Any(p => p.Destacado) == true)
+
     {
         <div class="mt-5">
             <h3 class="fw-bold mb-3">Servicios Destacados</h3>
@@ -195,7 +197,8 @@
             </div>
         </div>
     }
-    @if (selectedProveedor.Reseñas.Any())
+    @if (selectedProveedor.Reseñas?.Any() == true)
+
     {
         <div class="mt-5">
 

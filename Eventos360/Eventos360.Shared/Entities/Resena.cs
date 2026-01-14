@@ -8,8 +8,11 @@ namespace Eventos360.Shared.Entities
 {
     public class Resena
     {
-        public Guid Id { get; set; }
-        public Guid ProveedorId { get; set; }
+        //public Guid Id { get; set; }
+        //public Guid ProveedorId { get; set; }
+        public int Id { get; set; }
+
+        public int ProveedorId { get; set; }
         public Proveedor Proveedor { get; set; }
         public Guid UsuarioId { get; set; }
         public Usuario Usuario { get; set; }

@@ -8,8 +8,11 @@ namespace Eventos360.Shared.Entities
 {
     public class Productos
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+
+        //public Guid Id { get; set; }
         public string Nombre { get; set; }
+
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string ImagenUrl { get; set; }
