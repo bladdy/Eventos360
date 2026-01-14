@@ -10,25 +10,21 @@ namespace Eventos360.Frontend.Pages
     {
         // 🔹 Parámetros desde la URL
         [Parameter, SupplyParameterFromQuery]
-        public int? categoriaId { get; set; }
-
-        [Parameter, SupplyParameterFromQuery]
         public string? categoria { get; set; }
 
-        // ?tags=foto&tags=video
         [Parameter, SupplyParameterFromQuery]
         public string[]? tags { get; set; }
 
-        // 🔹 Datos base (NO se modifican)
+        // 🔹 Datos base
         private List<Proveedor> AllProveedors = [];
 
+        private List<Proveedor> Proveedors = [];
         private List<Categoria> Categorias = [];
         private List<Tags> Tags = [];
 
-        // 🔹 Resultado filtrado
-        private List<Proveedor> Proveedors = [];
+        // 🔹 Estado interno
+        private string? SelectedCategoria;
 
-        // 🔹 Filtros internos
         private List<string> SelectedTags = [];
 
         [Inject] private NavigationManager Navigation { get; set; } = default!;
@@ -38,26 +34,31 @@ namespace Eventos360.Frontend.Pages
             AllProveedors = ProveedoresData.Todos;
             Categorias = CategoriasData.Todas;
             Tags = TagsData.Todos;
+        }
 
-            if (tags is { Length: > 0 })
-                SelectedTags = tags.Distinct().ToList();
+        protected override void OnParametersSet()
+        {
+            // Sincronizar estado interno con URL
+            SelectedCategoria = categoria;
+
+            SelectedTags = tags is { Length: > 0 }
+                ? tags.Distinct().ToList()
+                : [];
 
             AplicarFiltros();
         }
 
-        // 🔹 MÉTODO REUTILIZABLE DE FILTROS
+        // 🔹 FILTRO CENTRAL
         private void AplicarFiltros()
         {
             IEnumerable<Proveedor> query = AllProveedors;
 
-            // 🔸 Filtrar por categoría
-            if (categoriaId.HasValue)
+            if (!string.IsNullOrWhiteSpace(SelectedCategoria))
             {
                 query = query.Where(p =>
-                    p.CategoriaId == categoriaId.Value);
+                    p.Categoria.Nombre == SelectedCategoria);
             }
 
-            // 🔸 Filtrar por tags
             if (SelectedTags.Any())
             {
                 query = query.Where(p =>
@@ -68,7 +69,14 @@ namespace Eventos360.Frontend.Pages
             Proveedors = query.ToList();
         }
 
-        // 🔹 Agregar tag
+        // 🔹 Cambio de categoría
+        private void OnCategoriaChange(ChangeEventArgs e)
+        {
+            SelectedCategoria = e.Value?.ToString();
+            UpdateUrl();
+        }
+
+        // 🔹 Toggle tags
         private void ToggleFiltroTag(string tag)
         {
             if (SelectedTags.Contains(tag))
@@ -79,34 +87,21 @@ namespace Eventos360.Frontend.Pages
             UpdateUrl();
         }
 
-        // 🔹 Quitar tag
-        private void RemoveFiltroTag(string tag)
-        {
-            if (!SelectedTags.Contains(tag))
-                return;
-
-            SelectedTags.Remove(tag);
-            UpdateUrl();
-        }
-
-        // 🔹 Actualiza la URL y reaplica filtros
+        // 🔹 Actualiza la URL SIN destruir el componente
         private void UpdateUrl()
         {
             var query = new Dictionary<string, StringValues>();
 
-            if (categoriaId.HasValue)
-                query["categoriaId"] = categoriaId.Value.ToString();
-
-            if (!string.IsNullOrWhiteSpace(categoria))
-                query["categoria"] = categoria;
+            if (!string.IsNullOrWhiteSpace(SelectedCategoria))
+                query["categoria"] = SelectedCategoria;
 
             if (SelectedTags.Any())
                 query["tags"] = new StringValues(SelectedTags.ToArray());
 
             var uri = QueryHelpers.AddQueryString("/search", query);
-            Navigation.NavigateTo(uri, forceLoad: false);
 
-            AplicarFiltros();
+            // ✅ replace evita recrear el componente (NO rompe JSInterop)
+            Navigation.NavigateTo(uri, replace: true);
         }
     }
 }

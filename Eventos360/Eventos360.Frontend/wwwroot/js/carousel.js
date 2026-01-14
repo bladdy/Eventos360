@@ -1,6 +1,8 @@
 ﻿window.carouselInterop = {
-    observe: function (element, dotnetHelper) {
-        const observer = new ResizeObserver(entries => {
+    instances: new Map(),
+
+    init: function (element, dotnetHelper) {
+        const resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
                 dotnetHelper.invokeMethodAsync(
                     'OnResize',
@@ -8,27 +10,44 @@
                 );
             }
         });
-        observer.observe(element);
-    },
 
-    enableSwipe: function (element, dotnetHelper) {
+        resizeObserver.observe(element);
+
         let startX = 0;
 
-        element.addEventListener("touchstart", e => {
+        const touchStart = e => {
             startX = e.touches[0].clientX;
-        });
+        };
 
-        element.addEventListener("touchend", e => {
+        const touchEnd = e => {
             const endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
 
             if (Math.abs(diff) > 50) {
-                if (diff > 0) {
-                    dotnetHelper.invokeMethodAsync('SwipeNext');
-                } else {
-                    dotnetHelper.invokeMethodAsync('SwipePrev');
-                }
+                diff > 0
+                    ? dotnetHelper.invokeMethodAsync('SwipeNext')
+                    : dotnetHelper.invokeMethodAsync('SwipePrev');
             }
+        };
+
+        element.addEventListener("touchstart", touchStart);
+        element.addEventListener("touchend", touchEnd);
+
+        this.instances.set(element, {
+            resizeObserver,
+            touchStart,
+            touchEnd
         });
+    },
+
+    dispose: function (element) {
+        const instance = this.instances.get(element);
+        if (!instance) return;
+
+        instance.resizeObserver.disconnect();
+        element.removeEventListener("touchstart", instance.touchStart);
+        element.removeEventListener("touchend", instance.touchEnd);
+
+        this.instances.delete(element);
     }
 };

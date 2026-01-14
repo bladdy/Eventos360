@@ -1,4 +1,4 @@
-using Eventos360.Frontend.Data;
+ï»¿using Eventos360.Frontend.Data;
 using Eventos360.Shared.DTOs;
 using Eventos360.Shared.Entities;
 using Microsoft.AspNetCore.Components;
@@ -12,7 +12,7 @@ namespace Eventos360.Frontend.Components
         [Inject] private IJSRuntime JS { get; set; } = default!;
         [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
-        // Ajusta este valor según el diseño (260 + gap)
+        // Ajusta este valor segÃºn el diseÃ±o (260 + gap)
         private const int MaxVisible = 6;
 
         private double touchStartX;
