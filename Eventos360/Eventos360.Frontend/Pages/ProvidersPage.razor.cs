@@ -22,8 +22,8 @@ namespace Eventos360.Frontend.Pages
         }
 
         private double PromedioCalificacion =>
-            selectedProveedor?.Reseñas.Any() == true
-                ? Math.Round(selectedProveedor.Reseñas.Average(r => r.Calificacion), 1)
+            selectedProveedor?.Resenas.Any() == true
+                ? Math.Round(selectedProveedor.Resenas.Average(r => r.Calificacion), 1)
                 : 0;
     }
 }

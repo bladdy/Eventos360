@@ -1,9 +1,14 @@
-﻿@page "/"
+﻿<!--Home-->
+@page "/"
 @using Eventos360.Frontend.Data
 
 <PageTitle>Home</PageTitle>
-<CategoryComponent/>
-<h1 style="font-size:32px; font-weight:700; margin-bottom:20px;">
+<BannerComponent/>
+<FullWidthCarouselComponent/>
+<!--
+    <CategoryComponent/>
+-->
+<h1 style="font-size:32px; font-weight:700; margin-top:20px;">
     Nuestros mejores Proveedores
 </h1>
 
@@ -19,12 +24,5 @@
                               Proveedores="topProveedores" />
     }
 }
-<!--
-
-<ProveedoresComponent CategoriaNombre="Fotografía y Video"
-                      CategoriaDescripcion="Los mejores fotógrafos y videógrafos para tu evento."
-                      CategoriaImagenUrl="/imagenes/categorias/fotografia-categoria.jpg"
-                      Proveedores="Top10Proveedores" />
--->
+<ContactFormComponent />
 <ProveedoresTagsComponent/>
-

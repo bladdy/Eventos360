@@ -4,39 +4,39 @@ namespace Eventos360.Frontend.Data
 {
     public static class CategoriasData
     {
-        public static readonly Categoria FotografiaVideo = new()
+        public static readonly Categoria SalonesEspacios = new()
         {
             Id = 1,
-            Nombre = "Fotografía y Video",
-            Descripcion = "Fotógrafos y videógrafos profesionales para capturar los mejores momentos de tu evento.",
-            ImagenUrl = "/imagenes/categorias/fotografia.jpg",
+            Nombre = "Salones y Espacios para Eventos",
+            Descripcion = "Espacios ideales para todo tipo de celebraciones y eventos.",
+            ImagenUrl = "/imagenes/categorias/SalonesyLocaciones.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria DjMusica = new()
+        public static readonly Categoria PlaneacionEventos = new()
         {
             Id = 2,
-            Nombre = "DJ y Música en Vivo",
-            Descripcion = "DJ, bandas y grupos musicales para animar cualquier tipo de celebración.",
-            ImagenUrl = "/imagenes/categorias/DJ.jpg",
+            Nombre = "Planeación y Coordinación de Eventos",
+            Descripcion = "Expertos en organizar, coordinar y producir eventos exitosos.",
+            ImagenUrl = "/imagenes/categorias/OrganizacionyWeddingPlanner.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria CateringBuffet = new()
+        public static readonly Categoria BanquetesCatering = new()
         {
             Id = 3,
-            Nombre = "Catering y Buffet",
-            Descripcion = "Servicios de alimentos y bebidas para eventos sociales y corporativos.",
-            ImagenUrl = "/imagenes/categorias/cateringybuffet.jpg",
+            Nombre = "Banquetes y Catering",
+            Descripcion = "Servicios gastronómicos para eventos sociales y corporativos.",
+            ImagenUrl = "/imagenes/categorias/Banquetes.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria SalonesLocaciones = new()
+        public static readonly Categoria BebidasBarras = new()
         {
             Id = 4,
-            Nombre = "Salones y Locaciones",
-            Descripcion = "Salones, jardines y espacios ideales para todo tipo de eventos.",
-            ImagenUrl = "/imagenes/categorias/SalonesyLocaciones.jpg",
+            Nombre = "Bebidas y Barras",
+            Descripcion = "Barras móviles, mixología y bebidas para todo tipo de eventos.",
+            ImagenUrl = "/imagenes/categorias/Banquetes.jpg",
             Proveedores = new List<Proveedor>()
         };
 
@@ -44,119 +44,159 @@ namespace Eventos360.Frontend.Data
         {
             Id = 5,
             Nombre = "Decoración y Ambientación",
-            Descripcion = "Decoración temática, floral y ambientación personalizada para tu evento.",
-            ImagenUrl = "/imagenes/categorias/DecoraciónyAmbientación.jpg",
+            Descripcion = "Diseño, ambientación y decoración personalizada para eventos.",
+            ImagenUrl = "/imagenes/categorias/DecoraciónyAmbientacion.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria IluminacionAudio = new()
+        public static readonly Categoria Floreria = new()
         {
             Id = 6,
-            Nombre = "Iluminación y Audio",
-            Descripcion = "Iluminación profesional y sistemas de audio para eventos de cualquier tamaño.",
-            ImagenUrl = "/imagenes/categorias/IluminaciónyAudio.jpg",
-            Proveedores = new List<Proveedor>()
-        };
-
-        public static readonly Categoria Banquetes = new()
-        {
-            Id = 7,
-            Nombre = "Banquetes",
-            Descripcion = "Banquetes completos con menús personalizados y servicio profesional.",
+            Nombre = "Florería",
+            Descripcion = "Diseño floral profesional para eventos y celebraciones.",
             ImagenUrl = "/imagenes/categorias/Banquetes.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria PastelesReposteria = new()
+        public static readonly Categoria MusicaAnimacion = new()
+        {
+            Id = 7,
+            Nombre = "Música y Animación",
+            Descripcion = "Entretenimiento musical y animación para eventos.",
+            ImagenUrl = "/imagenes/categorias/DJ.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria ShowsEspectaculos = new()
         {
             Id = 8,
-            Nombre = "Pasteles y Repostería",
-            Descripcion = "Pasteles, mesas de postres y repostería personalizada para eventos.",
-            ImagenUrl = "/imagenes/categorias/PastelesyRepostería.jpg",
+            Nombre = "Shows y Espectáculos",
+            Descripcion = "Espectáculos visuales y artísticos para sorprender.",
+            ImagenUrl = "/imagenes/categorias/IluminaciónyAudio.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria RentaMobiliario = new()
+        public static readonly Categoria FotografiaVideo = new()
         {
             Id = 9,
-            Nombre = "Renta de Mobiliario",
-            Descripcion = "Renta de mesas, sillas, carpas y mobiliario para eventos.",
-            ImagenUrl = "/imagenes/categorias/RentaMobiliario.jpg",
+            Nombre = "Fotografía y Video",
+            Descripcion = "Captura profesional de los mejores momentos del evento.",
+            ImagenUrl = "/imagenes/categorias/fotografia.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria WeddingPlanner = new()
+        public static readonly Categoria CabinasExperiencias = new()
         {
             Id = 10,
-            Nombre = "Organización y Wedding Planner",
-            Descripcion = "Organizadores profesionales y wedding planners para eventos sin estrés.",
-            ImagenUrl = "/imagenes/categorias/OrganizaciónyWeddingPlanner.jpg",
-            Proveedores = new List<Proveedor>()
-        };
-
-        public static readonly Categoria AnimacionShows = new()
-        {
-            Id = 11,
-            Nombre = "Animación y Shows",
-            Descripcion = "Shows, animadores y entretenimiento para todo tipo de eventos.",
-            ImagenUrl = "/imagenes/categorias/AnimaciónShows.jpg",
-            Proveedores = new List<Proveedor>()
-        };
-
-        public static readonly Categoria MaquillajePeinado = new()
-        {
-            Id = 12,
-            Nombre = "Maquillaje y Peinado",
-            Descripcion = "Maquillistas y estilistas profesionales para eventos sociales.",
-            ImagenUrl = "/imagenes/categorias/MaquillajeyPeinado.jpg",
+            Nombre = "Cabinas y Experiencias Interactivas",
+            Descripcion = "Experiencias tecnológicas y entretenimiento interactivo.",
+            ImagenUrl = "/imagenes/categorias/fotografia.jpg",
             Proveedores = new List<Proveedor>()
         };
 
         public static readonly Categoria InvitacionesPapeleria = new()
         {
-            Id = 13,
+            Id = 11,
             Nombre = "Invitaciones y Papelería",
-            Descripcion = "Invitaciones digitales, impresas y papelería personalizada.",
-            ImagenUrl = "/imagenes/categorias/InvitacionesPapelería.jpg",
+            Descripcion = "Diseño de invitaciones y papelería personalizada.",
+            ImagenUrl = "/imagenes/categorias/InvitacionesyPapeleria.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria TransporteTraslados = new()
+        public static readonly Categoria VestuarioModa = new()
+        {
+            Id = 12,
+            Nombre = "Vestuario y Moda",
+            Descripcion = "Vestimenta y moda para eventos sociales.",
+            ImagenUrl = "/imagenes/categorias/MaquillajeyPeinado.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria MaquillajePeinado = new()
+        {
+            Id = 13,
+            Nombre = "Maquillaje y Peinado",
+            Descripcion = "Servicios profesionales de maquillaje y peinado.",
+            ImagenUrl = "/imagenes/categorias/MaquillajeyPeinado.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria AccesoriosJoyeria = new()
         {
             Id = 14,
-            Nombre = "Transporte y Traslados",
-            Descripcion = "Transporte para invitados, novios o artistas.",
+            Nombre = "Accesorios y Joyería",
+            Descripcion = "Accesorios y joyería para eventos especiales.",
+            ImagenUrl = "/imagenes/categorias/MaquillajeyPeinado.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria ProtocoloCeremonia = new()
+        {
+            Id = 15,
+            Nombre = "Protocolo y Ceremonia",
+            Descripcion = "Servicios para ceremonias civiles, religiosas y simbólicas.",
+            ImagenUrl = "/imagenes/categorias/OrganizacionyWeddingPlanner.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria MobiliarioMontaje = new()
+        {
+            Id = 16,
+            Nombre = "Mobiliario y Montaje",
+            Descripcion = "Renta y montaje de mobiliario para eventos.",
+            ImagenUrl = "/imagenes/categorias/SalonesyLocaciones.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria AudioIluminacion = new()
+        {
+            Id = 17,
+            Nombre = "Audio, Iluminación y Producción",
+            Descripcion = "Producción técnica integral para eventos.",
+            ImagenUrl = "/imagenes/categorias/IluminacionyAudio.jpg",
+            Proveedores = new List<Proveedor>()
+        };
+
+        public static readonly Categoria TransporteEventos = new()
+        {
+            Id = 18,
+            Nombre = "Transporte para Eventos",
+            Descripcion = "Traslados y transporte especializado para eventos.",
             ImagenUrl = "/imagenes/categorias/TransporteyTraslados.jpg",
             Proveedores = new List<Proveedor>()
         };
 
-        public static readonly Categoria SeguridadLogistica = new()
+        public static readonly Categoria DetallesRecuerdos = new()
         {
-            Id = 15,
-            Nombre = "Seguridad y Logística",
-            Descripcion = "Personal de seguridad y logística para eventos grandes y pequeños.",
-            ImagenUrl = "/imagenes/categorias/SeguridadyLogística.jpg",
+            Id = 19,
+            Nombre = "Detalles y Recuerdos",
+            Descripcion = "Recuerdos personalizados y detalles para invitados.",
+            ImagenUrl = "/imagenes/categorias/PastelesyRepostería.jpg",
             Proveedores = new List<Proveedor>()
         };
 
         // LISTADO GENERAL
         public static readonly List<Categoria> Todas =
         [
-            FotografiaVideo,
-            DjMusica,
-            CateringBuffet,
-            SalonesLocaciones,
+            SalonesEspacios,
+            PlaneacionEventos,
+            BanquetesCatering,
+            BebidasBarras,
             DecoracionAmbientacion,
-            IluminacionAudio,
-            Banquetes,
-            PastelesReposteria,
-            RentaMobiliario,
-            WeddingPlanner,
-            AnimacionShows,
-            MaquillajePeinado,
+            Floreria,
+            MusicaAnimacion,
+            ShowsEspectaculos,
+            FotografiaVideo,
+            CabinasExperiencias,
             InvitacionesPapeleria,
-            TransporteTraslados,
-            SeguridadLogistica
+            VestuarioModa,
+            MaquillajePeinado,
+            AccesoriosJoyeria,
+            ProtocoloCeremonia,
+            MobiliarioMontaje,
+            AudioIluminacion,
+            TransporteEventos,
+            DetallesRecuerdos
         ];
     }
 }

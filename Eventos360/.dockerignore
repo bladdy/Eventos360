@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+**/Dockerfile
+**/*.user
+**/*.suo
+**/.dockerignore
+**/*.log
+**/.vscode/

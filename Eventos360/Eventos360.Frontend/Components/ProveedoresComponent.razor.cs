@@ -43,9 +43,19 @@ namespace Eventos360.Frontend.Components
             if (firstRender)
             {
                 ObjRef = DotNetObjectReference.Create(this);
-                await JS.InvokeVoidAsync("carouselInterop.observe", CarouselProveeRef, ObjRef);
-                await JS.InvokeVoidAsync("carouselInterop.enableSwipe", CarouselProveeRef, ObjRef);
+                await JS.InvokeVoidAsync(
+            "carouselInterop.init",
+                    CarouselProveeRef,
+                    ObjRef
+                );
+                // await JS.InvokeVoidAsync("carouselInterop.enableSwipe", CarouselProveeRef, ObjRef);
             }
+        }
+
+        private void IrABusqueda(string categoria)
+        {
+            var url = $"/search?categoria={Uri.EscapeDataString(categoria)}";
+            NavigationManager.NavigateTo(url);
         }
 
         [JSInvokable]

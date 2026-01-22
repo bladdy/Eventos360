@@ -1,36 +1,80 @@
 ﻿@using Eventos360.Shared.DTOs
 @inherits LayoutComponentBase
 
-<div style="width:100%; padding:40px 0; box-sizing:border-box; overflow:hidden;">
+<div style="width:100%; padding:40px 5px; box-sizing:border-box; overflow:hidden;">
 
     <!-- Header -->
-    <div style="
-        width:100%;
-        height:260px;
-        border-radius:22px;
-        background-image:url('@CategoriaImagenUrl');
-        background-size:cover;
-        background-position:center;
-        position:relative;
-        overflow:hidden;
-        margin-bottom:40px;
-    ">
-        <div style="position:absolute; inset:0;
-            background:linear-gradient(to right,
-            rgba(0,0,0,0.75), rgba(0,0,0,0.3));">
-        </div>
+    <div class="responsive-header" style="
+    position:relative;
+    width:100%;
+    height:300px;
+    margin-bottom:40px;
+">
 
-        <div style="position:absolute; bottom:30px; left:30px; color:white;">
-            <h1 style="margin:0; font-size:34px; font-weight:800;">
-                @CategoriaNombre
-            </h1>
-            <p style="margin-top:10px; max-width:600px;">
-                @CategoriaDescripcion
-            </p>
-        </div>
+        <!-- Imagen derecha -->
+        <div class="responsive-hide-image" style="
+            position:absolute;
+            top:0;
+            right:0;
+            width:70%;
+            height:100%;
+            background-image:url('@CategoriaImagenUrl');
+            background-size:cover;
+            background-position:center;
+            border-radius:22px;
+            overflow:hidden;
+        ">
+
+            </div>
+
+        <!-- Card frontal -->
+        <div class="responsive-card" style="
+            position:absolute;
+            left:5px;
+            top:50%;
+            transform:translateY(-50%);
+            width:35%;
+            height:80%;
+            background:white;
+            padding:30px;
+            border-radius:22px;
+            z-index:2;
+            box-shadow:3px 3px 3px 3px rgba(0,0,0,0.25);
+
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:start;
+            text-align:start;
+        ">
+                    <h1 style="
+                margin:0 0 16px 0;
+                font-size:32px;
+                font-weight:800;
+            ">
+                        @CategoriaNombre
+                    </h1>
+
+                    <p style="
+                margin:0 0 20px 0;
+                font-size:16px;
+                color:#555;
+                max-width:90%;
+            ">
+                        @CategoriaDescripcion
+                    </p>
+
+            <a href="javascript:void(0);" @onclick="() => IrABusqueda(CategoriaNombre)"
+                       class="btn btn-outline-primary">
+                        Ver más @CategoriaNombre
+                    </a>
+                </div>
+
+
     </div>
 
-    <!-- Carrusel -->
+
+ <!-- Carrusel -->
     <div style="
         display:flex;
         align-items:center;
@@ -72,38 +116,47 @@
 
                 @foreach (var proveedor in VisiblesProveedores)
                 {
-                    <div @onclick="() => IrAProveedor(proveedor.Stand)"
-                        style="
-                        min-width:@($"{CardWidth}px");
-                        height:260px;
-                        border-radius:18px;
-                        overflow:hidden;
-                        background-image:url('@proveedor.ImagenUrl');
-                        background-size:cover;
-                        background-position:center;
-                        position:relative;
-                        color:white;
-                        flex-shrink:0;
-                        box-sizing:border-box;
-                        cursor:pointer;
-                        ">
+                    var promedio = (proveedor.Resenas != null && proveedor.Resenas.Any())
+                    ? proveedor.Resenas.Average(c => c.Calificacion)
+                    : 0;
 
-                        <div style="position:absolute; inset:0;
-                            background:linear-gradient(to top,
-                            rgba(0,0,0,0.75), rgba(0,0,0,0.2));">
-                        </div>
+                    var productoDestacado = proveedor.Productos?
+                    .FirstOrDefault(x => x.Destacado);
 
-                        <div style="position:absolute; bottom:20px; left:20px;">
-                            <h3 style="margin:0; font-size:18px; font-weight:700;">
+                    <div class="card" style="width:20rem;">
+                        <img src="@(proveedor.Galeria?.FirstOrDefault()?.Url ?? "/imagenes/default.jpg")"
+                             class="card-img-top"
+                             alt="@proveedor.Nombre">
+
+                        <div class="card-body">
+                            <h5 class="card-title">
                                 @proveedor.Nombre
-                            </h3>
-                            <p style="margin:4px 0 0; font-size:13px;">
+                                <span class="badge bg-success">
+                                    ★ @promedio.ToString("0.0")
+                                </span>
+                            </h5>
+
+                            <p class="card-text">
                                 @proveedor.Ciudad
                             </p>
-                        </div>
 
+                            <p class="card-text">
+                                @(productoDestacado != null
+                                    ? $"Desde {productoDestacado.Precio:C0}"
+                                    : "Consultar precio")
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="javascript:void(0);"
+                                   class="btn btn-outline-primary btn-sm"
+                                   @onclick="() => IrAProveedor(proveedor.Stand)">
+                                    Ver perfil
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 }
+
             </div>
         </div>
 

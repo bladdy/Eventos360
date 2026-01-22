@@ -1,0 +1,18 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Eventos360.Frontend/Dockerfile
+    container_name: eventos360_frontend
+    ports:
+      - "8080:80"
+    restart: always
+    networks:
+      - eventos360_network
+
+# =========================
+# Red
+# =========================
+networks:
+  eventos360_network:
+    driver: bridge

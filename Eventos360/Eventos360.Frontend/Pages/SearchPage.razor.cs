@@ -14,6 +14,7 @@ namespace Eventos360.Frontend.Pages
 
         [Parameter, SupplyParameterFromQuery]
         public string[]? tags { get; set; }
+        [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
         // 🔹 Datos base
         private List<Proveedor> AllProveedors = [];
@@ -68,7 +69,11 @@ namespace Eventos360.Frontend.Pages
 
             Proveedors = query.ToList();
         }
-
+        private void IrAProveedor(string stand)
+        {
+            var url = $"/provider/{stand}";
+            NavigationManager.NavigateTo(url);
+        }
         // 🔹 Cambio de categoría
         private void OnCategoriaChange(ChangeEventArgs e)
         {

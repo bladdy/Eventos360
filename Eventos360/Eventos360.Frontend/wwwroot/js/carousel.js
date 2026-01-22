@@ -51,3 +51,8 @@
         this.instances.delete(element);
     }
 };
+
+// Alias opcional si lo necesitas
+window.carouselInterop.observe = function (element, dotnetHelper) {
+    window.carouselInterop.init(element, dotnetHelper);
+};

@@ -27,16 +27,16 @@ namespace Eventos360.Shared.Entities
         public string ImagenUrl { get; set; }
         public RedesSociales? RedesSociales { get; set; }
         public bool Activo { get; set; }
-        public ICollection<TagsProvedor> TagsProvedors { get; set; }
+        public ICollection<TagsProvedor> TagsProvedors { get; set; } = new List<TagsProvedor>();
         public Categoria Categoria { get; set; }
 
         //public Guid CategoriaId { get; set; }
         public int CategoriaId { get; set; }
 
-        public ICollection<ImagenProveedor> Galeria { get; set; }
-        public ICollection<Resena> Reseñas { get; set; }
+        public ICollection<ImagenProveedor> Galeria { get; set; } = new List<ImagenProveedor>();
+        public ICollection<Resena> Resenas { get; set; } = new List<Resena>();
         public DateTime FechaCreacion { get; set; }
-        public ICollection<Productos> Productos { get; set; }
-        public ICollection<Horarios> Horarios { get; set; }
+        public ICollection<Productos> Productos { get; set; } = new List<Productos>();
+        public ICollection<Horarios> Horarios { get; set; } = new List<Horarios>();
     }
 }

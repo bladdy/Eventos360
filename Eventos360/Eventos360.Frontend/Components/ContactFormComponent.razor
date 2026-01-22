@@ -1,0 +1,136 @@
+﻿
+<div style="
+    width:100%;
+    margin-top:10px;
+    padding:60px 15px;
+    box-sizing:border-box;
+">
+
+    <div style="
+        max-width:1100px;
+        margin:0 auto;
+        background:white;
+        border-radius:24px;
+        box-shadow:0 20px 40px rgba(0,0,0,0.1);
+        padding:50px;
+    ">
+
+        <div style="
+            display:flex;
+            gap:40px;
+            align-items:center;
+            flex-wrap:wrap;
+        ">
+
+            <!-- Columna izquierda -->
+            <div class="contact-left" style="
+                flex:1;
+                min-width:280px;
+            ">
+                <h3 style="
+                    font-size:28px;
+                    font-weight:800;
+                    margin-bottom:12px;
+                ">
+                    ¡Hablemos de todo!
+                </h3>
+
+                <p style="
+                    color:#666;
+                    font-size:16px;
+                    margin-bottom:25px;
+                ">
+                    Escríbenos y con gusto te ayudaremos a encontrar la mejor solución para tu negocio.
+                </p>
+
+                <img src="/imagenes/Contact-banner.webp"
+                     alt="Contacto"
+                     style="
+                        width:100%;
+                        max-width:420px;
+                        display:block;
+                     " />
+            </div>
+
+            <!-- Columna derecha -->
+            <div style="
+                flex:1;
+                min-width:280px;
+            ">
+
+                <form @onsubmit="Enviar">
+
+                    <div style="margin-bottom:15px;">
+                        <input type="text"
+                               placeholder="Tu nombre"
+                               @bind="model.Nombre"
+                               style="
+                                    width:100%;
+                                    padding:14px;
+                                    border-radius:10px;
+                                    border:1px solid #ddd;
+                                    font-size:15px;
+                               " />
+                    </div>
+
+                    <div style="margin-bottom:15px;">
+                        <input type="email"
+                               placeholder="Correo electrónico"
+                               @bind="model.Correo"
+                               style="
+                                    width:100%;
+                                    padding:14px;
+                                    border-radius:10px;
+                                    border:1px solid #ddd;
+                                    font-size:15px;
+                               " />
+                    </div>
+
+                    <div style="margin-bottom:15px;">
+                        <input type="text"
+                               placeholder="WhatsApp o teléfono"
+                               @bind="model.Telefono"
+                               style="
+                                    width:100%;
+                                    padding:14px;
+                                    border-radius:10px;
+                                    border:1px solid #ddd;
+                                    font-size:15px;
+                               " />
+                    </div>
+
+                    <div style="margin-bottom:20px;">
+                        <textarea rows="6"
+                                  placeholder="Escribe tu mensaje"
+                                  @bind="model.Mensaje"
+                                  style="
+                                        width:100%;
+                                        padding:14px;
+                                        border-radius:10px;
+                                        border:1px solid #ddd;
+                                        font-size:15px;
+                                        resize:none;
+                                  ">
+                        </textarea>
+                    </div>
+
+                    <button type="submit"
+                            style="
+                                background:#0d6efd;
+                                color:white;
+                                border:none;
+                                padding:14px 30px;
+                                font-size:15px;
+                                font-weight:700;
+                                border-radius:8px;
+                                cursor:pointer;
+                            ">
+                        Enviar mensaje
+                    </button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
